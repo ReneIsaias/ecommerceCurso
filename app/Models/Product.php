@@ -9,6 +9,9 @@ class Product extends Model
 {
     use HasFactory;
 
+    const Borrador = 1;
+    const Publicado = 2;
+
     protected $fillable = [
         'name',
         'slug',
@@ -17,6 +20,7 @@ class Product extends Model
         'subcategory_id',
         'brand_id',
         'quantity',
+        'status',
     ];
 
     /* Relacion 1 : N inversa */
@@ -51,6 +55,6 @@ class Product extends Model
     /* Un producto tiene una a muchas imagenes  */
     public function image()
     {
-        return $this->morphToMany(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

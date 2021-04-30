@@ -27,7 +27,7 @@ class Category extends Model
     /* Una categoría tiene pertenece a muchos brands */
     public function brands()
     {
-        return $this->belongsToMany(Brand::class); 
+        return $this->belongsToMany(Brand::class);
     }
 
     /* Relacion 1 : N atra vez de */
