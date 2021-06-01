@@ -34,5 +34,32 @@
         @stack('modals')
 
         @livewireScripts
+
+        <script>
+            /* Este script es para ocultar/mostrar el scroll dependiendo de si se hace o no click */
+            function dropdown(){
+                return {
+                    open: false,
+                    show(){
+                        if(this.open){
+                            //se cierra el menu
+                            this.open = false;
+                            //Mostramos el scroll
+                            document.getElementsByTagName('html')[0].style.overflow = 'auto'
+                        }else{
+                            //Abre el menu, desabiltamos el scroll
+                            this.open = true;
+                            //Ocultamos el scroll
+                            document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+                        }
+                    },
+                    close(){
+                        this.open = false;
+                        document.getElementsByTagName('html')[0].style.overflow = 'auto'
+                    }
+                }
+            }
+        </script>
+
     </body>
 </html>
