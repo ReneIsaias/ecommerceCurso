@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\PruebaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,32 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', WelcomeController::class);
+
+Route::get('dale', function(){
+    $categories = Category::with('subcategories', 'brands', 'products')->get();
+
+    return $categories;
 });
-
-
-Route::get('reto7', [PruebaController::class, 'reto7']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-
-
-
-Route::get('reto1', function () {
-
-    $personas = 7;
-    $ejecutadas = 3;
-
-        if($personas > 0){
-            for($i = 1; $i <= $personas; $i += $ejecutadas)
-            {
-                echo $i;
-                $valor = $i;
-            }
-        }
-
-        return $valor;
-});
