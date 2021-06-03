@@ -47,7 +47,6 @@ class ProductFactory extends Factory
             'brand_id'        => $brand->id,
             'quantity'        => $quantity,
             'status'          => 2,
-
         ];
     }
 }
