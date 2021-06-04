@@ -41,7 +41,8 @@ class Product extends Model
     /* Un producto tiene muchos colores */
     public function colors()
     {
-        return $this->belongsToMany(Color::class);
+        /* Para que nos traiga el valor de quantity */
+        return $this->belongsToMany(Color::class)->withPivot('quantity');
     }
 
     /* Relacion 1 : M */
@@ -56,5 +57,11 @@ class Product extends Model
     public function image()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    //Para hacer las url amigables
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
