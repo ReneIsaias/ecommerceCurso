@@ -4,9 +4,13 @@
         @foreach ($categories as $category)
             
             <section class="mb-6">
-                <h1 class="text-lg uppercase font-semibold text-gray-700">
-                    {{ $category->name }}
-                </h1>
+                <div class="flex items-center mb-2">
+                    <h1 class="text-lg uppercase font-semibold text-gray-700">
+                        {{ $category->name }}
+                    </h1>
+
+                    <a class="text-orange-700 hover:text-orange-400 hover:underline ml-2 font-semibold " href="{{ route('categories.show', $category)}}">Ver más</a>
+                </div>
 
                 @livewire('category-products', ['category' => $category])
             </section>
@@ -14,7 +18,7 @@
         @endforeach
     </div>
 
-    {{-- Logramso que este script se ejecute antes de cerrar el body --}}
+    {{-- Logramos que este script se ejecute antes de cerrar el body --}}
     @push('script')
 
         <script>
@@ -27,7 +31,7 @@
                     dots: '.glider-'+ id + '~ .dots',
                     arrows: {
                         prev: '.glider-'+ id + '~ .glider-prev',
-                        next: '.glider-'+ id + '~ .glider-next'
+                        next: '.glider-'+ id + '~ .glider-next',
                     },
                     responsive: [
                         {
