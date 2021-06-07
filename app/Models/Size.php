@@ -25,6 +25,7 @@ class Size extends Model
     /* Una talla tiene muchos colores */
     public function colors()
     {
-        return $this->belongsToMany(Color::class);
+        /* Para que nos traiga el valor de quantity */
+        return $this->belongsToMany(Color::class)->withPivot('quantity');
     }
 }
