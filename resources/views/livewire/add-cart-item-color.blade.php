@@ -1,4 +1,12 @@
 <div x-data>
+
+    <p class="text-gray-700 mb-4">
+        <span class="font-semibold text-lg">
+            Stock disponible :
+        </span>
+        {{ $quantity }}
+    </p>
+    
     <p class="text-lg text-gray-700">Color:</p>
 
     <select wire:model="color_id" class="form-control w-full">

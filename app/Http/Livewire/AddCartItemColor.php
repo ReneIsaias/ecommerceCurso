@@ -18,6 +18,19 @@ class AddCartItemColor extends Component
     public function mount(Product $product)
     {
         $this->colors = $product->colors;
+
+        $this->quantity = $this->product->quantity;
+
+    }
+
+    public function decrement()
+    {
+        $this->qty = $this->qty - 1;
+    }
+
+    public function increment()
+    {
+        $this->qty = $this->qty + 1;
     }
 
     public function render()

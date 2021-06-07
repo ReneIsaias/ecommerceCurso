@@ -39,5 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ColorProductSeeder::class);
         /* Agregamos en la tabla sizes nuevos valores y los relaciono con productos que si cumplan */
         $this->call(SizeSeeder::class);
+        /* Agregamos datos en la tabla entre tallas y colores de un producto */
+        $this->call(ColorSizeSeeder::class);
     }
 }
