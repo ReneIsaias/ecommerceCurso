@@ -60,6 +60,12 @@
 
         <div class="flex-1">
             <x-button
+                {{-- Evento cuando precionamos sobre el boton desencade ese evento --}}
+                wire:click="addItem"
+                {{-- Mientras hace una accion, desabilitamoes el boton --}}
+                wire:loading.attr="disabled"
+                {{-- Mientras ejecuta esa funcion no se podra ejecutar --}}
+                wire:target="addItem"
                 x-bind:disabled="!$wire.quantity"
                 color="orange" class="w-full">
                 Agregar al carrito de compras

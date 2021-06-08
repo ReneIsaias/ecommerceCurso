@@ -42,7 +42,7 @@
             </ul>
 
             <x-jet-button class="mt-4" wire:click="limpiar()">
-                Elimianr filtros
+                Eliminar filtros
             </x-jet-button>
 
         </aside>
