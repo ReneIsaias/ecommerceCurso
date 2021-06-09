@@ -36,6 +36,8 @@
                 wire:loading.attr="disabled"
                 {{-- Mientras ejecuta esa funcion no se podra ejecutar --}}
                 wire:target="addItem"
+                {{-- Desactivamos el boton cuando la cantidad sea mayor a 1 en qty--}}
+                x-bind:disabled="$wire.qty > $wire.quantity"
                 color="orange" class="w-full">
                 Agregar al carrito de compras
             </x-button>

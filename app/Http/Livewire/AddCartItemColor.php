@@ -17,13 +17,17 @@ class AddCartItemColor extends Component
 
     public $qty = 1;
 
-    public $options = [];
+    public $options = [
+        'size_id' => null,
+    ];
 
     public function mount(Product $product)
     {
-        $this->colors = $product->colors;
+        $this->product = $product;
 
-        $this->quantity = $this->product->quantity;
+        $this->colors = $this->product->colors;
+
+        /* $this->quantity = $this->product->quantity; */
 
         $this->options['image'] = Storage::url($this->product->image->first()->url);
 
@@ -44,7 +48,10 @@ class AddCartItemColor extends Component
     {
         $color = $this->product->colors->find($value);
         /* Obtenmos el valor de quantity del color que seleccionamos en el select del produucto que estamos trabajando */
-        $this->quantity = $color->pivot->quantity;
+        /* $this->quantity = $color->pivot->quantity; */
+        
+        /* Hacemos uso del helper que definimos */
+        $this->quantity = qty_available($this->product->id, $color->id);
 
         $this->options['color'] = $color->name;
     }
@@ -60,6 +67,12 @@ class AddCartItemColor extends Component
             'weight'    => 550,
             'options'   => $this->options,
         ]);
+
+        /* Actualizamos la variable $quantity */
+        $this->quantity = qty_available($this->product->id, $this->color_id);
+
+        /* Resetemaos el valor de qty a 1 una vez que agregamos un producto */
+        $this->reset('qty');
 
         /* Notificamos por medio de un evento que hemos agregado un producto al carrito de compras */
         $this->emitTo('dropdown-cart', 'render');

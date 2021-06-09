@@ -1,12 +1,5 @@
 <div x-data>
-
-    <p class="text-gray-700 mb-4">
-        <span class="font-semibold text-lg">
-            Stock disponible :
-        </span>
-        {{ $quantity }}
-    </p>
-    
+   
     <p class="text-lg text-gray-700">Color:</p>
 
     <select wire:model="color_id" class="form-control w-full">
@@ -16,7 +9,18 @@
         @endforeach
     </select>
 
-    <div class="flex mt-4">
+    <p class="text-gray-700 my-4">
+        <span class="font-semibold text-lg">
+            Stock disponible :
+        </span>
+        @if ($quantity)
+            {{$quantity}}
+        @else
+            {{ $product->stock }}
+        @endif
+    </p>
+
+    <div class="flex">
         <div class="mr-4">
             <x-jet-secondary-button 
                 disabled
@@ -47,6 +51,8 @@
                 {{-- Mientras ejecuta esa funcion no se podra ejecutar --}}
                 wire:target="addItem"
                 x-bind:disabled="!$wire.quantity"
+                {{-- Desactivamos el boton cuando la cantidad sea mayor a 1 en qty--}}
+                x-bind:disabled="$wire.qty > $wire.quantity"
                 color="orange" class="w-full">
                 Agregar al carrito de compras
             </x-button>
