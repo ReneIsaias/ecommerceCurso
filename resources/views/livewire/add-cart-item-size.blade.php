@@ -34,11 +34,12 @@
         <span class="font-semibold text-lg">
             Stock disponible :
         </span>
-        @if ($quantity)
+        {{$quantity}}
+        {{-- @if ($quantity)
             {{$quantity}}
         @else
             {{ $product->stock }}
-        @endif
+        @endif --}}
     </p>
 
     <div class="flex">

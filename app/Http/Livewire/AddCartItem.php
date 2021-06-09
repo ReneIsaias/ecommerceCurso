@@ -6,6 +6,7 @@ use App\Models\Product;
 use Livewire\Component;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\Helper;
 
 class AddCartItem extends Component
 {
@@ -26,7 +27,9 @@ class AddCartItem extends Component
 
         /* $this->quantity = $this->product->quantity; */
         /* Hacemos uso del helper que definimos */
-        $this->quantity = qty_available($this->product->id);
+        /* $this->quantity = qty_available($this->product->id); */
+        $this->quantity = Helper::qty_available($this->product->id);
+
 
         $this->options['image'] = Storage::url($this->product->image->first()->url);
         /* $this->options['image'] = $this->product->image->first()->url; */
@@ -55,7 +58,8 @@ class AddCartItem extends Component
         ]);
 
         /* Actualizamos la variable $quantity */
-        $this->quantity = qty_available($this->product->id);
+        /* $this->quantity = qty_available($this->product->id); */
+        $this->quantity = Helper::qty_available($this->product->id);
 
         /* Resetemaos el valor de qty a 1 una vez que agregamos un producto */
         $this->reset('qty');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Helpers\Helper;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +31,6 @@ class AddCartItemColor extends Component
         /* $this->quantity = $this->product->quantity; */
 
         $this->options['image'] = Storage::url($this->product->image->first()->url);
-
     }
 
     public function decrement()
@@ -51,7 +51,8 @@ class AddCartItemColor extends Component
         /* $this->quantity = $color->pivot->quantity; */
         
         /* Hacemos uso del helper que definimos */
-        $this->quantity = qty_available($this->product->id, $color->id);
+        /* $this->quantity = qty_available($this->product->id, $color->id); */
+        $this->quantity = Helper::qty_available($this->product->id, $color->id);
 
         $this->options['color'] = $color->name;
     }
@@ -69,7 +70,8 @@ class AddCartItemColor extends Component
         ]);
 
         /* Actualizamos la variable $quantity */
-        $this->quantity = qty_available($this->product->id, $this->color_id);
+        /* $this->quantity = qty_available($this->product->id, $this->color_id); */
+        $this->quantity = Helper::qty_available($this->product->id, $this->color_id);
 
         /* Resetemaos el valor de qty a 1 una vez que agregamos un producto */
         $this->reset('qty');

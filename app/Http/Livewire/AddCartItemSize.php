@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Helpers\Helper;
 use App\Models\Product;
 use App\Models\Size;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -54,7 +55,8 @@ class AddCartItemSize extends Component
         /* Obtenmos el valor de quantity del color que seleccionamos en el select del produucto que estamos trabajando */
         /* $this->quantity = $color->pivot->quantity; */
         /* Hacemos uso del helper que definimos */
-        $this->quantity = qty_available($this->product->id, $color->id, $size->id);
+        /* $this->quantity = qty_available($this->product->id, $color->id, $size->id); */
+        $this->quantity = Helper::qty_available($this->product->id, $color->id, $size->id);
         /* Pasamos el color a la variable options */
         $this->options['color'] = $color->name;
     }
@@ -82,7 +84,8 @@ class AddCartItemSize extends Component
         ]);
 
         /* Actualizamos la variable $quantity */
-        $this->quantity = qty_available($this->product->id, $this->color_id, $this->size_id);
+        /* $this->quantity = qty_available($this->product->id, $this->color_id, $this->size_id); */
+        $this->quantity = Helper::qty_available($this->product->id, $this->color_id, $this->size_id);
 
         /* Resetemaos el valor de qty a 1 una vez que agregamos un producto */
         $this->reset('qty');
