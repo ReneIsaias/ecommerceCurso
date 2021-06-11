@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Livewire\ShoppingCart;
 use App\Models\Category;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -26,6 +27,8 @@ Route::get('categories/{category}', [CategoryController::class, 'show'])->name('
 Route::get('products/{product}',[ProductController::class, 'show'])->name('products.show');
 
 Route::get('search', SearchController::class)->name('search');
+
+Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
